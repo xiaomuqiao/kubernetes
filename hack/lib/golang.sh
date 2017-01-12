@@ -73,9 +73,6 @@ else
   # The server platform we are building on.
   KUBE_SERVER_PLATFORMS=(
     linux/amd64
-    linux/arm
-    linux/arm64
-    linux/s390x
   )
   if [[ "${KUBE_BUILD_PPC64LE:-}" =~ ^[yY]$ ]]; then
     KUBE_SERVER_PLATFORMS+=(linux/ppc64le)
@@ -85,10 +82,6 @@ else
   # The node platforms we build for
   KUBE_NODE_PLATFORMS=(
     linux/amd64
-    linux/arm
-    linux/arm64
-    linux/s390x
-    windows/amd64
   )
   if [[ "${KUBE_BUILD_PPC64LE:-}" =~ ^[yY]$ ]]; then
     KUBE_NODE_PLATFORMS+=(linux/ppc64le)
@@ -99,14 +92,6 @@ else
   # in 'build/build-image/cross/Dockerfile'. However, it's only a bit faster since go 1.5, not mandatory
   KUBE_CLIENT_PLATFORMS=(
     linux/amd64
-    linux/386
-    linux/arm
-    linux/arm64
-    darwin/amd64
-    darwin/386
-    windows/amd64
-    windows/386
-    linux/s390x
   )
   if [[ "${KUBE_BUILD_PPC64LE:-}" =~ ^[yY]$ ]]; then
     KUBE_CLIENT_PLATFORMS+=(linux/ppc64le)
@@ -116,8 +101,6 @@ else
   # Which platforms we should compile test targets for. Not all client platforms need these tests
   readonly KUBE_TEST_PLATFORMS=(
     linux/amd64
-    darwin/amd64
-    windows/amd64
   )
 fi
 
@@ -180,8 +163,6 @@ readonly KUBE_PARALLEL_BUILD_MEMORY=11
 readonly KUBE_ALL_TARGETS=(
   "${KUBE_SERVER_TARGETS[@]}"
   "${KUBE_CLIENT_TARGETS[@]}"
-  "${KUBE_TEST_TARGETS[@]}"
-  "${KUBE_TEST_SERVER_TARGETS[@]}"
 )
 readonly KUBE_ALL_BINARIES=("${KUBE_ALL_TARGETS[@]##*/}")
 
